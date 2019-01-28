@@ -20,6 +20,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewH
         public TextView mTextView2;
         public TextView mTextView3;
         public TextView mTextView4;
+        public TextView zoneInitials;
 
         public ExampleViewHolder(View itemView) {
             super(itemView);
@@ -28,6 +29,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewH
             mTextView2 = itemView.findViewById(R.id.textView_location);
             mTextView3 = itemView.findViewById(R.id.textView_site_name);
             mTextView4 = itemView.findViewById(R.id.textView_site_id);
+            zoneInitials=itemView.findViewById(R.id.zone_initials);
         }
     }
 
@@ -50,6 +52,8 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewH
         holder.mTextView2.setText(currentItem.getLocation());
         holder.mTextView3.setText(currentItem.getSite_Name());
         holder.mTextView4.setText(currentItem.getSuyog_Site_ID());
+        holder.zoneInitials.setText(currentItem.getImage_zoneInitials());
+
     }
 
     @Override

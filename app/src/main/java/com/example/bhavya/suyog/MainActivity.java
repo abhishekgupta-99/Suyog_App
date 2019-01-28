@@ -30,12 +30,12 @@ public class MainActivity extends AppCompatActivity {
 
     public ArrayList<Alarm> dataset(){
         ArrayList<Alarm> alarm_list_data=new ArrayList<>();
-        alarm_list_data.add(new Alarm("STL_TP_11","south","Trombay","Trombay-Parcel 1 T-2"));
-        alarm_list_data.add(new Alarm("STL_MH_103","North Central","Bhiwandi","Tawre Bldg"));
-        alarm_list_data.add(new Alarm("STL_MH_115","North West","Nalasopara","Ayan Apartment"));
-        alarm_list_data.add(new Alarm("STL_MH_110","North Central","Bhiwandi","Romiya Apartment"));
-        alarm_list_data.add(new Alarm("STL_MH_112","North Central","Bhiwandi","Roshan Baug Chaudhary Bunglow"));
-        alarm_list_data.add(new Alarm("STL_MH_113","North Central","Bhiwandi","Prabhushet Building"));
+        alarm_list_data.add(new Alarm("STL_TP_11","south","Trombay","Trombay-Parcel 1 T-2","S"));
+        alarm_list_data.add(new Alarm("STL_MH_103","North Central","Bhiwandi","Tawre Bldg","NC"));
+        alarm_list_data.add(new Alarm("STL_MH_115","North West","Nalasopara","Ayan Apartment","NW"));
+        alarm_list_data.add(new Alarm("STL_MH_110","North Central","Bhiwandi","Romiya Apartment","NC"));
+        alarm_list_data.add(new Alarm("STL_MH_112","North Central","Bhiwandi","Roshan Baug Chaudhary Bunglow","NC"));
+        alarm_list_data.add(new Alarm("STL_MH_113","North Central","Bhiwandi","Prabhushet Building","NC"));
         return alarm_list_data;
     }
 
