@@ -70,7 +70,7 @@
         android:layout_height="wrap_content">
         <ImageView
             android:layout_width="50dp"
-            android:src="@drawable/ic_location"
+            android:src="@drawable/tower_icon"
             android:layout_height="50dp" />
 
 
