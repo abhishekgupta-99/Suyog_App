@@ -16,6 +16,7 @@
     android:layout_width="wrap_content"
     android:id="@+id/zone"
     android:layout_height="wrap_content">
+
     <TextView
         android:layout_width="50dp"
         android:background="@drawable/bg_circle"
@@ -85,11 +86,13 @@
             android:text="Line 2"
             android:textSize="15sp" />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:id="@+id/site_id"
         android:layout_below="@+id/site_name"
         android:layout_height="wrap_content">
+
         <ImageView
             android:layout_width="50dp"
             android:src="@drawable/ic_location"
