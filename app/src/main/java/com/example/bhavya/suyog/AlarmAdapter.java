@@ -1,6 +1,7 @@
 package com.example.bhavya.suyog;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -73,12 +74,38 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewH
                 filteredList.addAll(mAlarmListFull);
             }
             else{
-                String filterPattern=constraint.toString().toLowerCase().trim();
-                for(Alarm item:mAlarmListFull){
-                    if(item.getLocation().toLowerCase().contains(filterPattern)||item.getZone().toLowerCase().contains(filterPattern)){
-                        filteredList.add(item);
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                if (MainActivity.search_type.equals("Location")) {
+                    Log.i("Adapter","Inside Location");
+                    for (Alarm item : mAlarmListFull) {
+                        if (item.getLocation().toLowerCase().contains(filterPattern)) {
+                            filteredList.add(item);
+                        }
                     }
+
+
+                } else {
+                    if (MainActivity.search_type.equals("Zone")) {
+                        Log.i("Adapter","Inside Zone");
+                        for (Alarm item : mAlarmListFull) {
+                            if (item.getZone().toLowerCase().contains(filterPattern)) {
+                                filteredList.add(item);
+                            }
+                        }
+
+                    }
+                    else {
+                        Log.i("Adapter","Inside Both");
+                        for (Alarm item : mAlarmListFull) {
+                            if (item.getZone().toLowerCase().contains(filterPattern)||item.getLocation().toLowerCase().contains(filterPattern)) {
+                                filteredList.add(item);
+                            }
+                        }
+
+                    }
+
                 }
+
             }
             FilterResults results=new FilterResults();
             results.values=filteredList;

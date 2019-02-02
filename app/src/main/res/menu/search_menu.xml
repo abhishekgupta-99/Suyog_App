@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="all">
+    <item android:id="@+id/search_Location"
+        android:icon="@drawable/ic_search_options"
+        app:showAsAction="never"
+        android:title="Location"/>
+    <item
+        android:id="@+id/search_Zone"
+        android:icon="@drawable/ic_search_options"
+        android:title="Zone"
+        app:showAsAction="never"
+        android:checkable="true"/>
+    </group>
+</menu>

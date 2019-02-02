@@ -8,12 +8,19 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private AlarmAdapter mAdapter;
+    private TextView filter_zone;
+    public static String search_type;
+    private TextView filter_location;
+    private Boolean location_selected=false;
+    private Boolean Zone_selected=false;
     private RecyclerView.LayoutManager mLayoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.alarm_menu,menu);
+        inflater.inflate(R.menu.search_menu,menu);
         MenuItem SearchItem=menu.findItem(R.id.action_search);
         SearchView searchView=(SearchView) SearchItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -58,5 +66,64 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.search_Location:
+               /*search_type="Location";
+                Toast.makeText(this,"Location Selected",Toast.LENGTH_SHORT).show();
+                return true;*/
+
+                if(item.isChecked()){
+                    // If item already checked then unchecked it
+                    item.setChecked(false);
+                    location_selected = false;
+                }else{
+                    // If item is unchecked then checked it
+                    item.setChecked(true);
+                    location_selected = true;
+                }
+                // Update the text view text style
+                updateSearchType();
+                return true;
+            case R.id.search_Zone:
+                /*search_type="Zone";
+                Toast.makeText(this,"Zone Selected",Toast.LENGTH_SHORT).show();
+                return  true;*/
+
+                if(item.isChecked()){
+                    // If item already checked then unchecked it
+                    item.setChecked(false);
+                    Zone_selected = false;
+                }else{
+                    // If item is unchecked then checked it
+                    item.setChecked(true);
+                    Zone_selected = true;
+                }
+                // Update the text view text style
+                updateSearchType();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    public void updateSearchType()
+    {
+        if(location_selected && !Zone_selected)
+        {
+            search_type="Location";
+        }
+        else if(!location_selected && Zone_selected)
+        {
+            search_type="Zone";
+        }
+        else if(location_selected && Zone_selected)
+        {
+            search_type="Both";
+        }
+        else if(!location_selected && !Zone_selected) {
+            search_type="Both";
+        }
     }
 }
