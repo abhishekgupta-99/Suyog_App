@@ -3,10 +3,11 @@ package com.example.bhavya.suyog.mqtt;
 
 public class Constants {
 
-    public static final String MQTT_BROKER_URL = "tcp://iot.eclipse.org:1883";
+    public static final String MQTT_BROKER_URL = "tcp://ec2-18-218-160-26.us-east-2.compute.amazonaws.com";
+   // public static final String MQTT_BROKER_URL = "tcp://m16.cloudmqtt.com:17987";
 
-    public static final String PUBLISH_TOPIC = "androidkt/topic";
+    public static final String PUBLISH_TOPIC = "TheShayarGuy";
 
-    public static final String CLIENT_ID = "androidkt";
+    public static final String CLIENT_ID = "abhi";
 }
 
