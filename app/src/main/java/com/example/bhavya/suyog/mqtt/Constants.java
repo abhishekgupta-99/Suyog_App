@@ -7,9 +7,8 @@ public class Constants {
    // public static final String MQTT_BROKER_URL = "tcp://m16.cloudmqtt.com:17987";
 
     public static final String PUBLISH_TOPIC = "Test";
-
     public static final String CLIENT_ID = "abhi";
-    
+
 
 }
 
