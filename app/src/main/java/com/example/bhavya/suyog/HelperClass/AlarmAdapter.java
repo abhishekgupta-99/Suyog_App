@@ -1,4 +1,4 @@
-package com.example.bhavya.suyog;
+package com.example.bhavya.suyog.HelperClass;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+
+import com.example.bhavya.suyog.Activities.MainActivity;
+import com.example.bhavya.suyog.R;
 
 import java.util.ArrayList;
 

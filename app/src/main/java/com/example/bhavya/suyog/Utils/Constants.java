@@ -1,4 +1,4 @@
-package com.example.bhavya.suyog.mqtt;
+package com.example.bhavya.suyog.Utils;
 
 
 public class Constants {

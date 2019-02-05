@@ -1,4 +1,4 @@
-package com.example.bhavya.suyog;
+package com.example.bhavya.suyog.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +9,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.bhavya.suyog.HelperClass.Alarm;
+import com.example.bhavya.suyog.HelperClass.AlarmAdapter;
+import com.example.bhavya.suyog.R;
 
 import java.util.ArrayList;
 

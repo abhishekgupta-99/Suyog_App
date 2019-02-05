@@ -1,4 +1,4 @@
-package com.example.bhavya.suyog;
+package com.example.bhavya.suyog.HelperClass;
 
 public class Alarm {
     private String suyog_Site_ID;

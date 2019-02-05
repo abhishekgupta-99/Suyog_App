@@ -1,4 +1,4 @@
-package com.example.bhavya.suyog.mqtt;
+package com.example.bhavya.suyog.Services;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -11,8 +11,10 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.example.bhavya.suyog.Main2Activity;
+import com.example.bhavya.suyog.Activities.Main2Activity;
 import com.example.bhavya.suyog.R;
+import com.example.bhavya.suyog.Utils.Constants;
+import com.example.bhavya.suyog.HelperClass.PahoMqttClient;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;

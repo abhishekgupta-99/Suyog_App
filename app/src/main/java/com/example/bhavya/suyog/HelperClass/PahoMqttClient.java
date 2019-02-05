@@ -1,4 +1,4 @@
-package com.example.bhavya.suyog.mqtt;
+package com.example.bhavya.suyog.HelperClass;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

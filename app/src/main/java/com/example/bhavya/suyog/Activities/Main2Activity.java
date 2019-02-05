@@ -1,4 +1,4 @@
-package com.example.bhavya.suyog;
+package com.example.bhavya.suyog.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,9 +6,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.bhavya.suyog.mqtt.Constants;
-import com.example.bhavya.suyog.mqtt.MqttMessageService;
-import com.example.bhavya.suyog.mqtt.PahoMqttClient;
+import com.example.bhavya.suyog.R;
+import com.example.bhavya.suyog.Utils.Constants;
+import com.example.bhavya.suyog.Services.MqttMessageService;
+import com.example.bhavya.suyog.HelperClass.PahoMqttClient;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
