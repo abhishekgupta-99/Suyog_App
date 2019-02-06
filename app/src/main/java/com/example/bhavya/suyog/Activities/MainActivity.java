@@ -163,5 +163,6 @@ public class MainActivity extends AppCompatActivity {
         //toolbar_text.setText(R.string.ongoing_player);
         //Objects.requireNonNull(getSupportActionBar()).setTitle("      Alarms     ");
         getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.white));
+        
     }
 }
