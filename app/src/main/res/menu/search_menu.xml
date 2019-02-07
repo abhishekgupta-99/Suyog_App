@@ -4,12 +4,12 @@
 
     <group android:checkableBehavior="all">
     <item android:id="@+id/search_Location"
-        android:icon="@drawable/ic_search_options"
+        android:icon="@drawable/ic_filter"
         app:showAsAction="never"
         android:title="Location"/>
     <item
         android:id="@+id/search_Zone"
-        android:icon="@drawable/ic_search_options"
+        android:icon="@drawable/ic_filter"
         android:title="Zone"
         app:showAsAction="never"
         android:checkable="true"/>
