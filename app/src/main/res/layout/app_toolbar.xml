@@ -6,14 +6,14 @@
         android:id="@+id/app_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/orange"
+
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:minHeight="?actionBarSize"
         android:textColor="@color/white"
         android:textSize="18sp"
-    android:fitsSystemWindows="true"
-    app:layout_constraintBottom_toBottomOf="parent"
+        android:fitsSystemWindows="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         Alarms_toolbar = (Toolbar) findViewById(R.id.app_toolbar);
         setSupportActionBar(Alarms_toolbar);
         getSupportActionBar().setTitle("Alarm");
-        Alarms_toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        Alarms_toolbar.setTitleTextColor(getResources().getColor(R.color.black));
         toolbar_title=findViewById(R.id.app_toolbar_name);
         //toolbar_title.setText("Alarms");
         //toolbar_text.setText(R.string.ongoing_player);

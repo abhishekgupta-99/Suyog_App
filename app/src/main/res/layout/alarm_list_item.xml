@@ -32,7 +32,7 @@
         android:layout_alignParentEnd="true"
         app:cardElevation="3dp"
         app:cardCornerRadius="5dp"
-        app:cardBackgroundColor="@color/orange"
+        app:cardBackgroundColor="@color/lightblue"
         android:layout_height="wrap_content">
 
     <TextView
@@ -50,6 +50,14 @@
     </android.support.v7.widget.CardView>
 
 </RelativeLayout>
+
+        <View
+
+            android:layout_below="@+id/zone"
+            android:layout_marginTop="4dp"
+            android:background="@color/grey"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
 
 
     <RelativeLayout
@@ -74,6 +82,12 @@
             android:textSize="18sp"
           android:typeface="sans" />
     </RelativeLayout>
+        <View
+            android:layout_below="@+id/location"
+            android:layout_marginTop="4dp"
+            android:background="@color/grey"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -98,6 +112,13 @@
             android:text="Line 2"
             android:textSize="15sp" />
     </RelativeLayout>
+
+        <View
+            android:layout_below="@+id/site_name"
+            android:layout_marginTop="4dp"
+            android:background="@color/grey"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
 
     <RelativeLayout
         android:layout_width="wrap_content"

@@ -14,5 +14,5 @@
         app:showAsAction="never"
         android:checkable="true"/>
     </group>
-    
+
 </menu>
