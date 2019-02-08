@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         alarm_list_data.add(new Alarm("STL_MH_103","North Central","Bhiwandi","Tawre Bldg","NC"));
         alarm_list_data.add(new Alarm("STL_MH_115","North West","Nalasopara","Ayan Apartment","NW"));
         alarm_list_data.add(new Alarm("STL_MH_110","North Central","Bhiwandi","Romiya Apartment","NC"));
-        alarm_list_data.add(new Alarm("STL_MH_112","North Central","Bhiwandi","Roshan Baug Chaudhary Bunglow","NC"));
+        alarm_list_data.add(new Alarm("STL_MH_112","North Central","Bhiwandi","Roshan Baug Bunglow","NC"));
         alarm_list_data.add(new Alarm("STL_MH_113","North Central","Bhiwandi","Prabhushet Building","NC"));
         return alarm_list_data;
     }

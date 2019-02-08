@@ -62,49 +62,60 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
 
+
     <RelativeLayout
         android:padding="5dp"
         android:layout_width="wrap_content"
-        android:id="@+id/site_name"
+        android:id="@+id/location"
         android:layout_below="@+id/zone"
         android:layout_height="wrap_content">
         <ImageView
-            android:layout_width="30dp"
-            android:id="@+id/tower_icon"
             android:layout_margin="5dp"
-            android:src="@drawable/tower_icon"
+            android:layout_width="30dp"
+            android:src="@drawable/ic_location"
             android:layout_height="30dp" />
-
-        <TextView
-            android:id="@+id/textView_site_id"
-            android:layout_width="wrap_content"
-            android:padding="10dp"
-            android:layout_marginLeft="35dp"
-            android:layout_alignLeft="@+id/tower_icon"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:text="Location"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/textView_site_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="3dp"
-            android:text="Ayan Apartment"
-            android:textColor="@android:color/black"
-            android:textSize="15sp" />
         <TextView
             android:id="@+id/textView_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Line 1"
+            android:textAllCaps="true"
             android:layout_alignParentEnd="true"
             android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:layout_margin="3dp"
-            android:text="hbbdbhdhdhdd"
-            android:layout_below="@+id/textView_site_name"/>
+            android:textSize="18sp"
+          android:typeface="sans" />
+    </RelativeLayout>
+        <View
+            android:layout_below="@+id/location"
+            android:layout_marginTop="4dp"
+            android:background="@color/grey"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+    <RelativeLayout
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:id="@+id/site_name"
+        android:layout_below="@+id/location"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/tower_icon"
+            android:layout_height="30dp" />
+
+
+        <TextView
+            android:id="@+id/textView_site_name"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="8dp"
+            android:text="Line 2"
+            android:textSize="15sp" />
     </RelativeLayout>
 
         <View
@@ -114,6 +125,32 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"/>
 
+    <RelativeLayout
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:id="@+id/site_id"
+        android:layout_below="@+id/site_name"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_location"
+            android:layout_height="30dp" />
+
+
+        <TextView
+            android:padding="10dp"
+            android:id="@+id/textView_site_id"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Line 3"
+            android:textSize="12sp"
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     </RelativeLayout>
 
