@@ -27,6 +27,7 @@ public class FilterDialogSheet extends BottomSheetDialogFragment {
     RadioButton radioButton_south;
     RadioButton radioButton_east;
     RadioButton radioButton_west;
+    RadioButton radioButton_none;
     private BottomSheetListener mListener;
 
     @Nullable
@@ -39,6 +40,7 @@ public class FilterDialogSheet extends BottomSheetDialogFragment {
         radioButton_south=v.findViewById(R.id.radio_south);
         radioButton_east=v.findViewById(R.id.radio_east);
         radioButton_west=v.findViewById(R.id.radio_west);
+        radioButton_none=v.findViewById(R.id.radio_none);
 
         radioButton_north.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +67,13 @@ public class FilterDialogSheet extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 mListener.onButtonClicked("west");
+                dismiss();
+            }
+        });
+        radioButton_none.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onButtonClicked("none");
                 dismiss();
             }
         });

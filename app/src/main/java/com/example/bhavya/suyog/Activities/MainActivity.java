@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
     // private Boolean Zone_selected=false;
     private RecyclerView.LayoutManager mLayoutManager;
     private Toolbar Alarms_toolbar;
-    public static String opt;
+    public static String opt="none";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,8 +118,8 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
     @Override
     public void onButtonClicked(String text) {
         Toast.makeText(this,text,Toast.LENGTH_SHORT).show();
-      opt=text;
-
+        opt=text;
+        mAdapter.getFilter().filter(text);
     }
 
 }
