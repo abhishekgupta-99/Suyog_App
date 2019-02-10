@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
     android:gravity="center_horizontal"
+    android:background="@drawable/bottom_sheet_shape"
     android:orientation="vertical"
     android:padding="16dp"
     android:visibility="visible">
@@ -36,6 +39,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
+        android:layout_margin="8dp"
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,6 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4">
 
         <RadioButton
+            android:layout_margin="8dp"
             android:id="@+id/radio_north"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,26 +57,24 @@
             android:text="North" />
 
         <RadioButton
+            android:layout_margin="8dp"
             android:id="@+id/radio_south"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="South" />
 
         <RadioButton
+            android:layout_margin="8dp"
             android:id="@+id/radio_east"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="East" />
 
         <RadioButton
+            android:layout_margin="8dp"
             android:id="@+id/radio_west"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="West" />
-
-
     </RadioGroup>
 </android.support.constraint.ConstraintLayout>
