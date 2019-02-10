@@ -58,7 +58,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewH
         holder.mTextView2.setText(currentItem.getLocation());
         holder.mTextView3.setText(currentItem.getSite_Name());
         holder.mTextView4.setText(currentItem.getSuyog_Site_ID());
-        holder.zoneInitials.setText(currentItem.getImage_zoneInitials());
+      //  holder.zoneInitials.setText(currentItem.getImage_zoneInitials());
 
     }
 
