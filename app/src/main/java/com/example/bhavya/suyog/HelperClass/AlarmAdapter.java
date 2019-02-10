@@ -14,6 +14,8 @@ import com.example.bhavya.suyog.R;
 
 import java.util.ArrayList;
 
+import static com.example.bhavya.suyog.Activities.MainActivity.opt;
+
 public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewHolder> implements Filterable {
     private ArrayList<Alarm> mAlarmList;
     private ArrayList<Alarm> mAlarmListFull;
@@ -33,13 +35,13 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewH
             mTextView2 = itemView.findViewById(R.id.textView_location);
             mTextView3 = itemView.findViewById(R.id.textView_site_name);
             mTextView4 = itemView.findViewById(R.id.textView_site_id);
-            zoneInitials=itemView.findViewById(R.id.zone_initials);
+            zoneInitials = itemView.findViewById(R.id.zone_initials);
         }
     }
 
     public AlarmAdapter(ArrayList<Alarm> exampleList) {
         mAlarmList = exampleList;
-        mAlarmListFull=new ArrayList<>(mAlarmList);
+        mAlarmListFull = new ArrayList<>(mAlarmList);
     }
 
     @Override
@@ -64,63 +66,74 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewH
     public int getItemCount() {
         return mAlarmList.size();
     }
+
     @Override
     public Filter getFilter() {
         return alarmFilter;
     }
 
-    public Filter alarmFilter=new Filter() {
+    public Filter alarmFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            ArrayList<Alarm> filteredList=new ArrayList<>();
-            if(constraint==null||constraint.length()==0){
+            ArrayList<Alarm> filteredList = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
                 filteredList.addAll(mAlarmListFull);
-            }
-            else{
+            } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
-                if (MainActivity.search_type.equals("Location")) {
-                    Log.i("Adapter","Inside Location");
+                if(opt.equals("north")) {
+                    Log.i("check adapter","Inside north");
                     for (Alarm item : mAlarmListFull) {
-                        if (item.getLocation().toLowerCase().contains(filterPattern)) {
+                        if (item.getZone().toLowerCase().contains("north")) {
                             filteredList.add(item);
                         }
                     }
-
-
-                } else {
-                    if (MainActivity.search_type.equals("Zone")) {
-                        Log.i("Adapter","Inside Zone");
-                        for (Alarm item : mAlarmListFull) {
-                            if (item.getZone().toLowerCase().contains(filterPattern)) {
-                                filteredList.add(item);
-                            }
+                }
+                else if(opt.equals("south")){
+                    Log.i("check adapter","Inside south");
+                    for (Alarm item : mAlarmListFull) {
+                        if (item.getZone().toLowerCase().contains("south")) {
+                            filteredList.add(item);
                         }
-
                     }
-                    else {
-                        Log.i("Adapter","Inside Both");
-                        for (Alarm item : mAlarmListFull) {
-                            if (item.getZone().toLowerCase().contains(filterPattern)||item.getLocation().toLowerCase().contains(filterPattern)) {
-                                filteredList.add(item);
-                            }
+                }
+                else if(opt.equals("west")){
+                    Log.i("check adapter","Inside west");
+                    for (Alarm item : mAlarmListFull) {
+                        if (item.getZone().toLowerCase().contains("west")) {
+                            filteredList.add(item);
                         }
-
                     }
-
+                }
+                else if(opt.equals("east")){
+                    Log.i("check adapter","Inside east");
+                    for (Alarm item : mAlarmListFull) {
+                        if (item.getZone().toLowerCase().contains("east")) {
+                            filteredList.add(item);
+                        }
+                    }
+                }
+               else {
+                    for (Alarm item : mAlarmListFull) {
+                        Log.i("check adapter","Inside all");
+                        if (item.getZone().toLowerCase().contains(filterPattern) || item.getLocation().toLowerCase().contains(filterPattern)) {
+                            filteredList.add(item);
+                        }
+                    }
                 }
 
             }
-            FilterResults results=new FilterResults();
-            results.values=filteredList;
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
             return results;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             mAlarmList.clear();
-            mAlarmList.addAll((ArrayList)results.values);
+            mAlarmList.addAll((ArrayList) results.values);
             notifyDataSetChanged();
         }
     };
 
 }
+
