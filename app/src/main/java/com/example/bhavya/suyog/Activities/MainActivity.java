@@ -101,7 +101,6 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
     }
 
     public void tool_bar() {
-
         Alarms_toolbar = (Toolbar) findViewById(R.id.app_toolbar);
         setSupportActionBar(Alarms_toolbar);
         getSupportActionBar().setTitle("Alarm");
