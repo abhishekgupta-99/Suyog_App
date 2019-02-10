@@ -2,17 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <group android:checkableBehavior="all">
+
     <item android:id="@+id/search_Location"
         android:icon="@drawable/ic_filter"
-        app:showAsAction="never"
-        android:title="Location"/>
-    <item
-        android:id="@+id/search_Zone"
-        android:icon="@drawable/ic_filter"
-        android:title="Zone"
-        app:showAsAction="never"
-        android:checkable="true"/>
-    </group>
-
+        android:onClick="setup_sheet"
+        app:showAsAction="ifRoom"
+        android:title="Filter"/>
 </menu>
