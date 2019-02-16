@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -44,6 +45,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4">
 
+
+
         <RadioButton
             android:id="@+id/radio_north"
             android:layout_width="wrap_content"
@@ -62,16 +65,19 @@
             android:id="@+id/radio_east"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="East" />
 
         <RadioButton
             android:id="@+id/radio_west"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="West" />
 
+        <RadioButton
+            android:id="@+id/radio_none"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="None" />
 
     </RadioGroup>
 </android.support.constraint.ConstraintLayout>
