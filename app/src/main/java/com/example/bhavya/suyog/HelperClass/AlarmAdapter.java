@@ -112,7 +112,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewH
                         }
                     }
                 }
-               else {
+               else if(opt.equals("none")){
                     for (Alarm item : mAlarmListFull) {
                         Log.i("check adapter","Inside all");
                         if (item.getZone().toLowerCase().contains(filterPattern) || item.getLocation().toLowerCase().contains(filterPattern)) {
