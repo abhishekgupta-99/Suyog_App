@@ -131,16 +131,33 @@
             android:src="@drawable/ic_alarm"
             android:layout_height="30dp" />
 
-        <TextView
-            android:id="@+id/alarm_text"
-            android:layout_width="wrap_content"
-            android:padding="10dp"
-            android:layout_marginLeft="35dp"
-            android:layout_alignLeft="@+id/bell_icon"
+        <!--<TextView-->
+            <!--android:id="@+id/alarm_text"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:padding="10dp"-->
+            <!--android:layout_marginLeft="35dp"-->
+            <!--android:layout_alignLeft="@+id/bell_icon"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:text="Alarms"-->
+            <!--android:textSize="15sp" />-->
+        <!---->
+
+        <com.hootsuite.nachos.NachoTextView
+            android:id="@+id/nacho_text_view"
+            android:layout_toRightOf="@+id/bell_icon"
+            android:layout_toEndOf="@+id/bell_icon"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:text="Alarms"
-            android:textSize="15sp" />
+            app:chipSpacing="3dp"
+            app:chipBackground="@color/white"
+            app:chipTextColor="@color/black"
+            app:chipTextSize="16dp"
+            app:chipHeight="30dp"
+            app:chipVerticalSpacing="3dp"/>
+        <!--app:chipHorizontalSpacing="4dp"-->
+
+
 
         <TextView
             android:id="@+id/textView_location"

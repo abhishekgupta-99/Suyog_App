@@ -1,5 +1,4 @@
 package com.example.bhavya.suyog.Activities;
-
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,8 +19,10 @@ import com.example.bhavya.suyog.HelperClass.Alarm;
 import com.example.bhavya.suyog.HelperClass.AlarmAdapter;
 import com.example.bhavya.suyog.HelperClass.FilterDialogSheet;
 import com.example.bhavya.suyog.R;
+import com.hootsuite.nachos.NachoTextView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements FilterDialogSheet.BottomSheetListener {
@@ -29,6 +31,11 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
     //  private TextView filter_zone;
     private TextView toolbar_title;
     public static String search_type;
+
+    private NachoTextView nachotextview;
+    List<String> suggestions;
+
+
     //private TextView filter_location;
     //private Boolean location_selected=false;
     // private Boolean Zone_selected=false;
@@ -49,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
         mRecyclerView.setAdapter(mAdapter);
 
 
+
         tool_bar();
 
         if (Build.VERSION.SDK_INT > 22) {
@@ -60,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
                             View.SYSTEM_UI_FLAG_LAYOUT_STABLE
             );
         }
+        //alarm_nacho_view();
     }
 
     public ArrayList<Alarm> dataset() {
@@ -72,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
         alarm_list_data.add(new Alarm("STL_MH_113", "North Central", "Bhiwandi", "Prabhushet Building", "NC"));
         return alarm_list_data;
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -119,6 +129,16 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
         Toast.makeText(this,text,Toast.LENGTH_SHORT).show();
       opt=text;
 
+    }
+
+
+    public void alarm_nacho_view()
+    {
+
+        suggestions.add("Hey");
+       // ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, suggestions);
+        nachotextview=findViewById(R.id.nacho_text_view);
+        nachotextview.setText(suggestions);
     }
 
 }
