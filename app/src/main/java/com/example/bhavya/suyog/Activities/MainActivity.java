@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
     private TextView toolbar_title;
     public static String search_type;
 
-    private NachoTextView nachotextview;
+  //  private NachoTextView nachotextview;
     List<String> suggestions;
 
 
@@ -137,8 +137,8 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
 
         suggestions.add("Hey");
        // ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, suggestions);
-        nachotextview=findViewById(R.id.nacho_text_view);
-        nachotextview.setText(suggestions);
+       // nachotextview=findViewById(R.id.nacho_text_view);
+       // nachotextview.setText(suggestions);
     }
 
 }
