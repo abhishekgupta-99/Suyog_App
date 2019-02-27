@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -42,12 +43,14 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
     private RecyclerView.LayoutManager mLayoutManager;
     private Toolbar Alarms_toolbar;
     public static String opt="none";
-
+    public ArrayList<Alarm>alarm_list;// buffer on which adapter is set
+    public ArrayList<Alarm>alarm_listcopy; //contains all the value
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ArrayList<Alarm> alarm_list = dataset();
+         alarm_list = dataset();
+         alarm_listcopy=new ArrayList<>(alarm_list);
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
@@ -85,10 +88,11 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        Log.i("check main","Inside on create opt");
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.alarm_menu, menu);
-        inflater.inflate(R.menu.search_menu, menu);
-        MenuItem SearchItem = menu.findItem(R.id.action_search);
+        inflater.inflate(R.menu.alarm_menu, menu);// this is for the search bar and icon
+        inflater.inflate(R.menu.search_menu, menu);// inflating the icon
+        MenuItem SearchItem = menu.findItem(R.id.action_search);//find the input in the edit text
         SearchView searchView = (SearchView) SearchItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -104,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
         });
         return true;
     }
-
+//this setups the sheet on clicking the icon since on click is added
     public void setup_sheet(MenuItem item){
         FilterDialogSheet filtersheet=new FilterDialogSheet();
         filtersheet.show(getSupportFragmentManager(),"filterbottomsheet");
@@ -123,12 +127,54 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
 
 
     }
+//alarm list copy contains all the entry and according to the filter selected alarm list is
+// manipulated and the adapter is set on alarm_list
 
     @Override
     public void onButtonClicked(String text) {
         Toast.makeText(this,text,Toast.LENGTH_SHORT).show();
         opt=text;
-        mAdapter.getFilter().filter(text);
+       switch(opt){
+           case "north":
+               alarm_list.clear();
+               for(int i=0;i<alarm_listcopy.size();i++){
+                   if(alarm_listcopy.get(i).getZone().contains("North")){
+                       alarm_list.add(alarm_listcopy.get(i));
+                   }
+               }
+
+               break;
+           case "south":
+               alarm_list.clear();
+               for(int i=0;i<alarm_listcopy.size();i++){
+                   if(alarm_listcopy.get(i).getZone().contains("South")){
+                       alarm_list.add(alarm_listcopy.get(i));
+                   }
+               }
+           case "east":
+               alarm_list.clear();
+               for(int i=0;i<alarm_listcopy.size();i++){
+                   if(alarm_listcopy.get(i).getZone().contains("East")){
+                       alarm_list.add(alarm_listcopy.get(i));
+                   }
+               }
+               break;
+           case "west":
+               alarm_list.clear();
+               for(int i=0;i<alarm_listcopy.size();i++){
+                   if(alarm_listcopy.get(i).getZone().contains("West")){
+                       alarm_list.add(alarm_listcopy.get(i));
+                   }
+               }
+               break;
+           case "none":
+               alarm_list.clear();
+               alarm_list.addAll(alarm_listcopy);
+               break;
+       }
+        mAdapter.notifyDataSetChanged();
+
+
     }
 
 

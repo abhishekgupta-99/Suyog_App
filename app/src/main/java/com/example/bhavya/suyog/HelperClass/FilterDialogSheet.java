@@ -35,24 +35,37 @@ public class FilterDialogSheet extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.filter_bottom_sheet, container, false);
         radioGroup = v.findViewById(R.id.radioGroup);
-        int radioId = radioGroup.getCheckedRadioButtonId();
         radioButton_north=v.findViewById(R.id.radio_north);
         radioButton_south=v.findViewById(R.id.radio_south);
         radioButton_east=v.findViewById(R.id.radio_east);
         radioButton_west=v.findViewById(R.id.radio_west);
         radioButton_none=v.findViewById(R.id.radio_none);
+        int radioId = radioGroup.getCheckedRadioButtonId();
+
 
         radioButton_north.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                radioButton_north.setChecked(true);
+                radioButton_south.setChecked(false);
+                radioButton_east.setChecked(false);
+                radioButton_west.setChecked(false);
+                radioButton_none.setChecked(false);
                 mListener.onButtonClicked("north");
+
                 dismiss();
             }
         });
         radioButton_south.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                radioButton_north.setChecked(false);
+                radioButton_south.setChecked(true);
+                radioButton_east.setChecked(false);
+                radioButton_west.setChecked(false);
+                radioButton_none.setChecked(false);
                 mListener.onButtonClicked("south");
+
                 dismiss();
             }
         });
@@ -60,20 +73,37 @@ public class FilterDialogSheet extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 mListener.onButtonClicked("east");
+                radioButton_north.setChecked(false);
+                radioButton_south.setChecked(false);
+                radioButton_east.setChecked(true);
+                radioButton_west.setChecked(false);
+                radioButton_none.setChecked(false);
                 dismiss();
             }
         });
         radioButton_west.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                radioButton_north.setChecked(false);
+                radioButton_south.setChecked(false);
+                radioButton_east.setChecked(false);
+                radioButton_west.setChecked(true);
+                radioButton_none.setChecked(false);
                 mListener.onButtonClicked("west");
+
                 dismiss();
             }
         });
         radioButton_none.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                radioButton_north.setChecked(false);
+                radioButton_south.setChecked(false);
+                radioButton_east.setChecked(false);
+                radioButton_west.setChecked(false);
+                radioButton_none.setChecked(true);
                 mListener.onButtonClicked("none");
+
                 dismiss();
             }
         });

@@ -80,7 +80,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewH
                 filteredList.addAll(mAlarmListFull);
             } else {
                 String filterPattern = constraint.toString().toLowerCase().trim();
-                if(opt.equals("north")) {
+              /*  if(opt.equals("north")) {
                     Log.i("check adapter","Inside north");
                     for (Alarm item : mAlarmListFull) {
                         if (item.getZone().toLowerCase().contains("north")) {
@@ -119,8 +119,13 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewH
                             filteredList.add(item);
                         }
                     }
+                }*/
+                for (Alarm item : mAlarmListFull) {
+                    Log.i("check adapter", "Inside all");
+                    if (item.getZone().toLowerCase().contains(filterPattern) || item.getLocation().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
                 }
-
             }
             FilterResults results = new FilterResults();
             results.values = filteredList;
