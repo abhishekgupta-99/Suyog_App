@@ -82,6 +82,9 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
         alarm_list_data.add(new Alarm("STL_MH_110", "North Central", "Bhiwandi", "Romiya Apartment", "NC"));
         alarm_list_data.add(new Alarm("STL_MH_112", "North Central", "Bhiwandi", "Roshan Baug Bunglow", "NC"));
         alarm_list_data.add(new Alarm("STL_MH_113", "North Central", "Bhiwandi", "Prabhushet Building", "NC"));
+        alarm_list_data.add(new Alarm("STL_MH_119", "East", "Bhiwandi", "Prabhushet Building", "E"));
+        alarm_list_data.add(new Alarm("STL_MH_179", "South", "Bhiwandi", "Prabhushet Building", "S"));
+        alarm_list_data.add(new Alarm("STL_MH_69", "West", "Bhiwandi", "Prabhushet Building", "W"));
         return alarm_list_data;
     }
 
@@ -135,41 +138,52 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
         Toast.makeText(this,text,Toast.LENGTH_SHORT).show();
         opt=text;
        switch(opt){
-           case "north":
+           case "North":
                alarm_list.clear();
+               Log.i("check Inside",opt);
                for(int i=0;i<alarm_listcopy.size();i++){
                    if(alarm_listcopy.get(i).getZone().contains("North")){
                        alarm_list.add(alarm_listcopy.get(i));
+
                    }
                }
 
                break;
-           case "south":
+           case "South":
                alarm_list.clear();
+               Log.i("Inside",opt);
                for(int i=0;i<alarm_listcopy.size();i++){
                    if(alarm_listcopy.get(i).getZone().contains("South")){
                        alarm_list.add(alarm_listcopy.get(i));
-                   }
-               }
-           case "east":
-               alarm_list.clear();
-               for(int i=0;i<alarm_listcopy.size();i++){
-                   if(alarm_listcopy.get(i).getZone().contains("East")){
-                       alarm_list.add(alarm_listcopy.get(i));
+                       Log.i("Check Added",alarm_listcopy.get(i).getZone());
                    }
                }
                break;
-           case "west":
+           case "East":
+               alarm_list.clear();
+               Log.i("Inside",opt);
+               for(int i=0;i<alarm_listcopy.size();i++){
+                   if(alarm_listcopy.get(i).getZone().contains("East")){
+                       alarm_list.add(alarm_listcopy.get(i));
+                       Log.i("Check Added",alarm_listcopy.get(i).getZone());
+                   }
+               }
+               break;
+           case "West":
+               Log.i("Inside",opt);
                alarm_list.clear();
                for(int i=0;i<alarm_listcopy.size();i++){
                    if(alarm_listcopy.get(i).getZone().contains("West")){
                        alarm_list.add(alarm_listcopy.get(i));
+                       Log.i("Check Added",alarm_listcopy.get(i).getZone());
                    }
                }
                break;
-           case "none":
+           case "None":
+               Log.i("Inside",opt);
                alarm_list.clear();
                alarm_list.addAll(alarm_listcopy);
+              // Log.i("Check Added",alarm_listcopy.get(i).getZone());
                break;
        }
         mAdapter.notifyDataSetChanged();
