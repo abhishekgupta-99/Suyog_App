@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
     }
 
 
-    public void alarm_nacho_view()
+   /* public void alarm_nacho_view()
     {
 
         suggestions.add("Hey");
@@ -200,5 +200,5 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
         nachotextview=findViewById(R.id.nacho_text_view);
         nachotextview.setText(suggestions);
     }
-
+*/
 }
