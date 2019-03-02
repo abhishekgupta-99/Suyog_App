@@ -157,6 +157,50 @@
                 android:src="@drawable/ic_alarm"
                 android:layout_height="25dp" />
 
+
+            <android.support.design.chip.ChipGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/alarm_chipgroup"
+                android:layout_toRightOf="@+id/bell_icon"
+                android:layout_toEndOf="@+id/bell_icon"
+                android:layout_margin="5dp">
+
+                <android.support.design.chip.Chip
+                    android:id="@+id/alarm1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alarm1" />
+            <android.support.design.chip.Chip
+                android:id="@+id/alarm2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alarm2" />
+
+            <android.support.design.chip.Chip
+                android:id="@+id/alarm3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alarm3" />
+                <android.support.design.chip.Chip
+                    android:id="@+id/alarm4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Alarm4" />
+
+        </android.support.design.chip.ChipGroup>
+
+
+
+
+            <!--</com.google.android.material.chip.ChipGroup>-->
+
+            <!--<com.google.android.material.chip.Chip-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_toRightOf="@id/bell_icon"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Dummy" />-->
+
             <!--<TextView-->
             <!--android:id="@+id/alarm_text"-->
             <!--android:layout_width="wrap_content"-->
