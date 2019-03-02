@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Suyog</string>
+    <string-array name="Zone">
+        <item>North</item>
+        <item>South</item>
+        <item>East</item>
+        <item>West</item>
+        <item>None</item>
+    </string-array>
 </resources>

@@ -14,19 +14,69 @@
         android:layout_height="match_parent"
         android:layout_margin="3dp">
 
+<RelativeLayout
+    android:padding="5dp"
+    android:layout_width="wrap_content"
+    android:id="@+id/zone"
+    android:layout_height="wrap_content">
 
-        <!--<View-->
+    <!--<TextView-->
+        <!--android:layout_width="30dp"-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:background="@drawable/bg_circle"-->
+        <!--android:text="W"-->
+        <!--android:id="@+id/zone_initials"-->
+        <!--android:textColor="#ffff"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_height="30dp" />-->
 
-            <!--android:layout_below="@+id/zone"-->
-            <!--android:layout_marginTop="4dp"-->
-            <!--android:background="@color/grey"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="1dp"/>-->
+    <TextView
+        android:id="@+id/textView_site_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_margin="3dp"
+        android:text="Ayan Apartment"
+        android:textColor="@android:color/black"
+        android:textSize="15sp" />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_alignParentEnd="true"
+        app:cardElevation="3dp"
+        app:cardCornerRadius="5dp"
+        app:cardBackgroundColor="@color/lightblue"
+        android:layout_height="wrap_content">
+
+    <TextView
+            android:id="@+id/textView_zone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:padding="5dp"
+            android:text="Zone"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+           />
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
+
+        <View
+
+            android:layout_below="@+id/zone"
+            android:layout_marginTop="4dp"
+            android:background="@color/grey"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
 
     <RelativeLayout
         android:padding="5dp"
         android:layout_width="wrap_content"
         android:id="@+id/site_name"
+        android:layout_below="@+id/zone"
         android:layout_height="wrap_content">
         <ImageView
             android:layout_width="30dp"
@@ -39,7 +89,6 @@
             android:id="@+id/textView_site_id"
             android:layout_width="wrap_content"
             android:padding="10dp"
-            android:layout_centerInParent="true"
             android:layout_marginLeft="35dp"
             android:layout_alignLeft="@+id/tower_icon"
             android:layout_height="wrap_content"
@@ -51,86 +100,20 @@
             android:id="@+id/textView_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/zonee"
-            android:gravity="center"
             android:layout_alignParentEnd="true"
-            android:text="hbbdbhdhdhdd"
             android:textColor="@android:color/black"
-            android:textSize="15sp" />
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/zonee"
-            android:layout_width="wrap_content"
-            android:layout_alignParentEnd="true"
-            app:cardElevation="3dp"
-            app:cardCornerRadius="5dp"
-            app:cardBackgroundColor="@color/lightblue"
-            android:layout_height="wrap_content">
-
-
-
-            <TextView
-                android:id="@+id/textView_zone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="0dp"
-                android:padding="5dp"
-                android:text="Zone"
-                android:textColor="@android:color/black"
-                android:textSize="15sp"
-                />
-
-        </android.support.v7.widget.CardView>
-
-
+            android:gravity="center"
+            android:textSize="15sp"
+            android:layout_margin="3dp"
+            android:text="hbbdbhdhdhdd" />
     </RelativeLayout>
 
-        <RelativeLayout
-            android:padding="5dp"
-            android:layout_width="wrap_content"
-            android:id="@+id/zone"
+        <View
             android:layout_below="@+id/site_name"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:id="@+id/location_icon"
-                android:layout_height="30dp"
-                android:layout_margin="5dp"
-                android:src="@drawable/location"/>
-
-            <!--<TextView-->
-            <!--android:layout_width="30dp"-->
-            <!--android:layout_margin="5dp"-->
-            <!--android:background="@drawable/bg_circle"-->
-            <!--android:text="W"-->
-            <!--android:id="@+id/zone_initials"-->
-            <!--android:textColor="#ffff"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_height="30dp" />-->
-
-            <TextView
-                android:id="@+id/textView_site_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/location_icon"
-                android:layout_margin="3dp"
-                android:layout_centerInParent="true"
-                android:text="Ayan Apartment"
-                android:textColor="@android:color/black"
-                android:textSize="15sp" />
-
-
-        </RelativeLayout>
-
-
-        <!--<View-->
-            <!--android:layout_below="@+id/site_name"-->
-            <!--android:layout_marginTop="4dp"-->
-            <!--android:background="@color/grey"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="1dp"/>-->
+            android:layout_marginTop="4dp"
+            android:background="@color/grey"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
 
 
 
@@ -139,7 +122,7 @@
         android:padding="5dp"
         android:layout_width="wrap_content"
         android:id="@+id/alarm_rl"
-        android:layout_below="@+id/zone"
+        android:layout_below="@+id/site_name"
         android:layout_height="wrap_content">
         <ImageView
             android:layout_width="30dp"
@@ -161,19 +144,19 @@
             <!--android:textSize="15sp" />-->
         <!---->
 
-        <!--<com.hootsuite.nachos.NachoTextView-->
-            <!--android:id="@+id/nacho_text_view"-->
-            <!--android:layout_toRightOf="@+id/bell_icon"-->
-            <!--android:layout_toEndOf="@+id/bell_icon"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--app:chipSpacing="3dp"-->
-            <!--app:chipBackground="@color/white"-->
-            <!--app:chipTextColor="@color/black"-->
-            <!--app:chipTextSize="16dp"-->
-            <!--app:chipHeight="30dp"-->
-            <!--app:chipVerticalSpacing="3dp"/>-->
-        <!--&lt;!&ndash;app:chipHorizontalSpacing="4dp"&ndash;&gt;-->
+        <com.hootsuite.nachos.NachoTextView
+            android:id="@+id/nacho_text_view"
+            android:layout_toRightOf="@+id/bell_icon"
+            android:layout_toEndOf="@+id/bell_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:chipSpacing="3dp"
+            app:chipBackground="@color/white"
+            app:chipTextColor="@color/black"
+            app:chipTextSize="16dp"
+            app:chipHeight="30dp"
+            app:chipVerticalSpacing="3dp"/>
+        <!--app:chipHorizontalSpacing="4dp"-->
 
 
 
@@ -189,12 +172,12 @@
             />
     </RelativeLayout>
 
-    <!--<View-->
-        <!--android:layout_below="@+id/site_name"-->
-        <!--android:layout_marginTop="4dp"-->
-        <!--android:background="@color/grey"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1dp"/>-->
+    <View
+        android:layout_below="@+id/site_name"
+        android:layout_marginTop="4dp"
+        android:background="@color/grey"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
 
 
 
