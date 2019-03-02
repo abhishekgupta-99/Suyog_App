@@ -148,6 +148,7 @@
             android:src="@drawable/ic_alarm"
             android:layout_height="30dp" />
 
+
         <!--<TextView-->
             <!--android:id="@+id/alarm_text"-->
             <!--android:layout_width="wrap_content"-->
