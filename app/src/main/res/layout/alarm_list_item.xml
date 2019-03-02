@@ -32,6 +32,7 @@
                 android:layout_width="30dp"
                 android:id="@+id/tower_icon"
                 android:layout_margin="3dp"
+                android:layout_centerVertical="true"
                 android:src="@drawable/tower_icon"
                 android:layout_height="25dp" />
 
@@ -106,6 +107,7 @@
                 android:layout_width="30dp"
                 android:id="@+id/location_icon"
                 android:layout_height="25dp"
+                android:layout_centerVertical="true"
                 android:layout_margin="3dp"
                 android:src="@drawable/location"/>
 
@@ -154,6 +156,7 @@
                 android:layout_width="30dp"
                 android:id="@+id/bell_icon"
                 android:layout_margin="5dp"
+                android:layout_centerVertical="true"
                 android:src="@drawable/ic_alarm"
                 android:layout_height="25dp" />
 
