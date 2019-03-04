@@ -102,7 +102,7 @@ public class FilterDialogSheet extends BottomSheetDialogFragment implements View
             SubCategoryItem subCategoryItem = new SubCategoryItem();
             subCategoryItem.setCategoryId(String.valueOf(j));
             subCategoryItem.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
-            subCategoryItem.setSubCategoryName("Zone: "+arr_zone[j-1]+j);
+            subCategoryItem.setSubCategoryName("Zone: "+arr_zone[j-1]+" "+j);
             arSubCategory.add(subCategoryItem);
         }
         dataItem.setSubCategory(arSubCategory);

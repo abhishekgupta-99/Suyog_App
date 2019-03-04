@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
 
     @Override
     public void onButtonClicked(String text) {
-        Toast.makeText(this,text,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"Changes Applied.",Toast.LENGTH_SHORT).show();
         opt=text;
        switch(opt){
            case "Zone 1":
