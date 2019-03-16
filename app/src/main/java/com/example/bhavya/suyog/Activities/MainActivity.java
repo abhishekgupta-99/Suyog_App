@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
         return alarm_list_data;
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         Log.i("check main","Inside on create opt");
@@ -225,6 +224,7 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
                        Log.i("Check Added",alarm_listcopy.get(i).getZone());
                    }
                }
+
                break;
            case "6":
                Log.i("Inside",opt);

@@ -6,7 +6,7 @@ public class Alarm {
     private String location;
     private String zone_Initials;
     private String site_Name;
-
+    //add a alarm variable and getter setter for the same
     public Alarm(String suyog_Site_ID, String zone, String location, String site_Name,String zone_Initials) {
         this.suyog_Site_ID = suyog_Site_ID;
         this.zone = zone;
