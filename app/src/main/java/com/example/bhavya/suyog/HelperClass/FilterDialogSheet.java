@@ -19,6 +19,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
@@ -31,7 +32,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class FilterDialogSheet extends BottomSheetDialogFragment  {
+import static java.security.AccessController.getContext;
+
+public class FilterDialogSheet extends BottomSheetDialogFragment implements View.OnClickListener  {
 
     RadioGroup radioGroup;
     RadioButton radioButton_north;
@@ -47,148 +50,199 @@ public class FilterDialogSheet extends BottomSheetDialogFragment  {
 
 
     private BottomSheetListener mListener;
+    private Button apply;
+    private ExpandableListView lvCategory;
+
+    private ArrayList<DataItem> arCategory;
+    private ArrayList<SubCategoryItem> arSubCategory;
+    private ArrayList<ArrayList<SubCategoryItem>> arSubCategoryFinal;
+
+    private ArrayList<HashMap<String, String>> parentItems;
+    private ArrayList<ArrayList<HashMap<String, String>>> childItems;
+    private MyCategoriesExpandableListAdapter myCategoriesExpandableListAdapter;
+
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.filter_bottom_sheet, container, false);
-       // radioGroup = v.findViewById(R.id.radioGroup);
-      /*  radioButton_north=v.findViewById(R.id.radio_north);
-        radioButton_south=v.findViewById(R.id.radio_south);
-        radioButton_east=v.findViewById(R.id.radio_east);
-        radioButton_west=v.findViewById(R.id.radio_west);
-        radioButton_none=v.findViewById(R.id.radio_none);*/ //uncoment for radio buttons
-       // checkbox_north=v.findViewById(R.id.checkBox_north);
-     /*   Spinner spinner=v.findViewById(R.id.spinner_zone);
-        adapter=ArrayAdapter.createFromResource(getContext(),R.array.Zone,android.R.layout.simple_spinner_item);
-       adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);*///spinner methods are commented
-        /* int radioId = radioGroup.getCheckedRadioButtonId();
-*/
-        expandableListView = (ExpandableListView) v.findViewById(R.id.expandableListView);
-        expandableListDetail = ExpandableListDataPump.getData();
-        expandableListTitle = new ArrayList<String>(expandableListDetail.keySet());
-        expandableListAdapter = new CustomExpandableListAdapter(getContext(), expandableListTitle, expandableListDetail);
-        expandableListView.setAdapter(expandableListAdapter);
+        lvCategory =v. findViewById(R.id.lvCategory);
+        arCategory = new ArrayList<>();
+        arSubCategory = new ArrayList<>();
+        parentItems = new ArrayList<>();
+        childItems = new ArrayList<>();
+        DataItem dataItem = new DataItem();
+        dataItem.setCategoryId("1");
+        dataItem.setCategoryName("Alarms");
+        apply=v.findViewById(R.id.apply);
+        apply.setOnClickListener(this);
+        String arr_zone[]={"North","South","East","West"};
+
+        arSubCategory = new ArrayList<>();
+        for(int i = 1; i < 6; i++) {
+
+            SubCategoryItem subCategoryItem = new SubCategoryItem();
+            subCategoryItem.setCategoryId(String.valueOf(i));
+            subCategoryItem.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
+            subCategoryItem.setSubCategoryName("Alarms: "+i);
+            arSubCategory.add(subCategoryItem);
+        }
+
+        dataItem.setSubCategory(arSubCategory);
+        arCategory.add(dataItem);
+
+        dataItem = new DataItem();
+        dataItem.setCategoryId("2");
+        dataItem.setCategoryName("Zone");
+        arSubCategory = new ArrayList<>();
+
+        for(int j = 1; j < 5; j++) {
+
+            SubCategoryItem subCategoryItem = new SubCategoryItem();
+            subCategoryItem.setCategoryId(String.valueOf(j));
+            subCategoryItem.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
+            subCategoryItem.setSubCategoryName("Zone: "+arr_zone[j-1]+" "+j);
+            arSubCategory.add(subCategoryItem);
+        }
+        dataItem.setSubCategory(arSubCategory);
+        arCategory.add(dataItem);
+        Log.d("TAG", "setupReferences: "+arCategory.size());
 
 
-        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+        Log.d("TAG", "setupReferences: "+arCategory.size());
 
-            @Override
-            public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getActivity().getApplicationContext(),
-                        expandableListTitle.get(groupPosition) + " List Expanded.",
-                        Toast.LENGTH_SHORT).show();
+        for(DataItem data : arCategory){
+//                        Log.i("Item id",item.id);
+            ArrayList<HashMap<String, String>> childArrayList =new ArrayList<HashMap<String, String>>();
+            HashMap<String, String> mapParent = new HashMap<String, String>();
+
+            mapParent.put(ConstantManager.Parameter.CATEGORY_ID,data.getCategoryId());
+            mapParent.put(ConstantManager.Parameter.CATEGORY_NAME,data.getCategoryName());
+
+            int countIsChecked = 0;
+            for(SubCategoryItem subCategoryItem : data.getSubCategory()) {
+
+                HashMap<String, String> mapChild = new HashMap<String, String>();
+                mapChild.put(ConstantManager.Parameter.SUB_ID,subCategoryItem.getSubId());
+                mapChild.put(ConstantManager.Parameter.SUB_CATEGORY_NAME,subCategoryItem.getSubCategoryName());
+                mapChild.put(ConstantManager.Parameter.CATEGORY_ID,subCategoryItem.getCategoryId());
+                mapChild.put(ConstantManager.Parameter.IS_CHECKED,subCategoryItem.getIsChecked());
+
+                if(subCategoryItem.getIsChecked().equalsIgnoreCase(ConstantManager.CHECK_BOX_CHECKED_TRUE)) {
+
+                    countIsChecked++;
+                }
+                childArrayList.add(mapChild);
             }
-        });
 
-        expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+            if(countIsChecked == data.getSubCategory().size()) {
 
-            @Override
-            public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getActivity().getApplicationContext(),
-                        expandableListTitle.get(groupPosition) + " List Collapsed.",
-                        Toast.LENGTH_SHORT).show();
-
+                data.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_TRUE);
+            }else {
+                data.setIsChecked(ConstantManager.CHECK_BOX_CHECKED_FALSE);
             }
-        });
 
-        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
-                mListener.onButtonClicked( expandableListDetail.get(
-                        expandableListTitle.get(groupPosition)).get(
-                        childPosition).trim());
+            mapParent.put(ConstantManager.Parameter.IS_CHECKED,data.getIsChecked());
+            childItems.add(childArrayList);
+            parentItems.add(mapParent);
 
-                Toast.makeText(
-                        getActivity().getApplicationContext(),
-                        expandableListTitle.get(groupPosition)
-                                + " -> "
-                                + expandableListDetail.get(
-                                expandableListTitle.get(groupPosition)).get(
-                                childPosition), Toast.LENGTH_SHORT
-                ).show();
-                return false;
-            }
-        });
+        }
+
+        ConstantManager.parentItems = parentItems;
+        ConstantManager.childItems = childItems;
+        myCategoriesExpandableListAdapter = new MyCategoriesExpandableListAdapter(getActivity(),parentItems,childItems,false);
+        lvCategory.setAdapter(myCategoriesExpandableListAdapter);
 
 
 
-       /* radioButton_north.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                radioButton_north.setChecked(true);
-                radioButton_south.setChecked(false);
-                radioButton_east.setChecked(false);
-                radioButton_west.setChecked(false);
-                radioButton_none.setChecked(false);
-                mListener.onButtonClicked("north");
 
-                dismiss();
-            }
-        });
-        radioButton_south.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                radioButton_north.setChecked(false);
-                radioButton_south.setChecked(true);
-                radioButton_east.setChecked(false);
-                radioButton_west.setChecked(false);
-                radioButton_none.setChecked(false);
-                mListener.onButtonClicked("south");
 
-                dismiss();
-            }
-        });
-        radioButton_east.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.onButtonClicked("east");
-                radioButton_north.setChecked(false);
-                radioButton_south.setChecked(false);
-                radioButton_east.setChecked(true);
-                radioButton_west.setChecked(false);
-                radioButton_none.setChecked(false);
-                dismiss();
-            }
-        });
-        radioButton_west.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                radioButton_north.setChecked(false);
-                radioButton_south.setChecked(false);
-                radioButton_east.setChecked(false);
-                radioButton_west.setChecked(true);
-                radioButton_none.setChecked(false);
-                mListener.onButtonClicked("west");
 
-                dismiss();
-            }
-        });
-        radioButton_none.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                radioButton_north.setChecked(false);
-                radioButton_south.setChecked(false);
-                radioButton_east.setChecked(false);
-                radioButton_west.setChecked(false);
-                radioButton_none.setChecked(true);
-                mListener.onButtonClicked("none");
 
-                dismiss();
-            }
-        });
-
-        checkbox_north.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mListener.onButtonClicked("north");
-            }
-        });*/
         return v;
     }
+
+    @Override
+    public void onClick(View v) {
+
+        ArrayList<String> Zone_filter=new ArrayList<>();
+        for (int i = 0; i < MyCategoriesExpandableListAdapter.parentItems.size(); i++ ){
+
+            String isChecked = MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.IS_CHECKED);
+
+            if (isChecked.equalsIgnoreCase(ConstantManager.CHECK_BOX_CHECKED_TRUE))
+            {   Log.i("check in",MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.CATEGORY_NAME));
+
+            }
+
+            for (int j = 0; j < MyCategoriesExpandableListAdapter.childItems.get(i).size(); j++ ){
+
+                String isChildChecked = MyCategoriesExpandableListAdapter.childItems.get(i).get(j).get(ConstantManager.Parameter.IS_CHECKED);
+
+                if (isChildChecked.equalsIgnoreCase(ConstantManager.CHECK_BOX_CHECKED_TRUE))
+                {
+                    Zone_filter.add(MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.CATEGORY_NAME) + " "+(j+1));
+                }
+
+
+
+            }
+
+
+        }
+
+        for(int i=0;i<Zone_filter.size();i++){
+            Log.i("check in",Zone_filter.get(i));
+        }
+
+        if(Zone_filter.size()==1)
+            mListener.onButtonClicked(Zone_filter.get(0));
+        if(Zone_filter.size()==2)
+        {
+            if(Zone_filter.contains("Zone 1")&&Zone_filter.contains("Zone 2")){
+                mListener.onButtonClicked("1");
+            }
+            if(Zone_filter.contains("Zone 1")&&Zone_filter.contains("Zone 3")){
+                mListener.onButtonClicked("2");
+            }
+            if(Zone_filter.contains("Zone 1")&&Zone_filter.contains("Zone 4")){
+                mListener.onButtonClicked("3");
+            }
+            if(Zone_filter.contains("Zone 2")&&Zone_filter.contains("Zone 3")){
+                mListener.onButtonClicked("4");
+            }
+            if(Zone_filter.contains("Zone 2")&&Zone_filter.contains("Zone 4")){
+                mListener.onButtonClicked("5");
+            }
+            if(Zone_filter.contains("Zone 3")&&Zone_filter.contains("Zone 4")){
+                mListener.onButtonClicked("6");
+            }
+        }
+        if(Zone_filter.size()==3)
+        {
+            if(Zone_filter.contains("Zone 1")&&Zone_filter.contains("Zone 2")&&Zone_filter.contains("Zone 3")){
+                mListener.onButtonClicked("7");
+            }
+            if(Zone_filter.contains("Zone 1")&&Zone_filter.contains("Zone 2")&&Zone_filter.contains("Zone 4")){
+                mListener.onButtonClicked("8");
+            }
+            if(Zone_filter.contains("Zone 1")&&Zone_filter.contains("Zone 3")&&Zone_filter.contains("Zone 4")){
+                mListener.onButtonClicked("9");
+            }
+            if(Zone_filter.contains("Zone 2")&&Zone_filter.contains("Zone 3")&&Zone_filter.contains("Zone 4")){
+                mListener.onButtonClicked("10");
+            }
+        }
+
+        if(Zone_filter.size()==4)
+        {
+            mListener.onButtonClicked("11");
+        }
+
+    }
+
+
 
     public interface BottomSheetListener {
         void onButtonClicked(String text);
@@ -204,6 +258,7 @@ public class FilterDialogSheet extends BottomSheetDialogFragment  {
                     + " must implement BottomSheetListener");
         }
     }
+
 }
 
 
