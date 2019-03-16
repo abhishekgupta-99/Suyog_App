@@ -1,5 +1,8 @@
 package com.example.bhavya.suyog.Activities;
 import android.os.Build;
+import android.support.design.chip.Chip;
+import android.support.design.chip.ChipDrawable;
+import android.support.design.chip.ChipGroup;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -31,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
     private AlarmAdapter mAdapter;
     private TextView toolbar_title;
     public static String search_type;
+    private ChipGroup chipGroup;
 
   //  private NachoTextView nachotextview;
     List<String> suggestions;
@@ -55,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
 
+        View alarm_card_xml = LayoutInflater.from(this).inflate(R.layout.alarm_list_item,null);
+      //  chipGroup=alarm_card_xml.findViewById(R.id.alarm_chipgroup);
 
 
         tool_bar();
@@ -68,20 +76,24 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
                             View.SYSTEM_UI_FLAG_LAYOUT_STABLE
             );
         }
+
         //alarm_nacho_view();
     }
 
     public ArrayList<Alarm> dataset() {
         ArrayList<Alarm> alarm_list_data = new ArrayList<>();
-        alarm_list_data.add(new Alarm("STL_TP_11", "South", "Trombay", "Trombay-Parcel 1 T-2", "S"));
-        alarm_list_data.add(new Alarm("STL_MH_103", "North Central", "Bhiwandi", "Tawre Bldg", "NC"));
-        alarm_list_data.add(new Alarm("STL_MH_115", "North West", "Nalasopara", "Ayan Apartment", "NW"));
-        alarm_list_data.add(new Alarm("STL_MH_110", "North Central", "Bhiwandi", "Romiya Apartment", "NC"));
-        alarm_list_data.add(new Alarm("STL_MH_112", "North Central", "Bhiwandi", "Roshan Baug Bunglow", "NC"));
-        alarm_list_data.add(new Alarm("STL_MH_113", "North Central", "Bhiwandi", "Prabhushet Building", "NC"));
-        alarm_list_data.add(new Alarm("STL_MH_119", "East", "Bhiwandi", "Prabhushet Building", "E"));
-        alarm_list_data.add(new Alarm("STL_MH_179", "South", "Bhiwandi", "Prabhushet Building", "S"));
-        alarm_list_data.add(new Alarm("STL_MH_69", "West", "Bhiwandi", "Prabhushet Building", "W"));
+        ArrayList<String> alarms_list=new ArrayList<>();
+        alarms_list.add("Short Circuit");
+        alarms_list.add("Power Down");
+        alarm_list_data.add(new Alarm("STL_TP_11", "South", "Trombay", "Trombay-Parcel 1 T-2", "S",alarms_list));
+        alarm_list_data.add(new Alarm("STL_MH_103", "North Central", "Bhiwandi", "Tawre Bldg", "NC",alarms_list));
+        alarm_list_data.add(new Alarm("STL_MH_115", "North West", "Nalasopara", "Ayan Apartment", "NW",alarms_list));
+        alarm_list_data.add(new Alarm("STL_MH_110", "North Central", "Bhiwandi", "Romiya Apartment", "NC",alarms_list));
+        alarm_list_data.add(new Alarm("STL_MH_112", "North Central", "Bhiwandi", "Roshan Baug Bunglow", "NC",alarms_list));
+        alarm_list_data.add(new Alarm("STL_MH_113", "North Central", "Bhiwandi", "Prabhushet Building", "NC",alarms_list));
+        alarm_list_data.add(new Alarm("STL_MH_119", "East", "Bhiwandi", "Prabhushet Building", "E",alarms_list));
+        alarm_list_data.add(new Alarm("STL_MH_179", "South", "Bhiwandi", "Prabhushet Building", "S",alarms_list));
+        alarm_list_data.add(new Alarm("STL_MH_69", "West", "Bhiwandi", "Prabhushet Building", "W",alarms_list));
         return alarm_list_data;
     }
 
@@ -285,6 +297,39 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
 
     }
 
+
+    public void chips()
+    {
+        Chip chip = new Chip(this);
+        chip.setText("Abhishek");
+      //  chip.setChipText("your...text");
+        chip.setCloseIconEnabled(true);
+      //  chip.setCloseIconResource(R.drawable.your_icon);
+        //chip.setChipIconResource(R.drawable.your_icon);
+      //  chip.setChipBackgroundColorResource(R.color.grey);
+      //  chip.setTextAppearanceResource(R.style.ChipTextStyle);
+        //chip.setElevation(15);
+        chipGroup.addView(chip);
+    }
+
+    private Chip getChip(final ChipGroup entryChipGroup, String text) {
+        final Chip chip = new Chip(this);
+        //chip.setChipDrawable(ChipDrawable.createFromResource(this, R.xml.my_chip));
+//        int paddingDp = (int) TypedValue.applyDimension(
+//                TypedValue.COMPLEX_UNIT_DIP, 10,
+//                getResources().getDisplayMetrics()
+//        );
+//        chip.setPadding(paddingDp, paddingDp, paddingDp, paddingDp);
+        chip.setText(text);
+      //  entryChipGroup.addView(chip);
+       // chip.setOnCloseIconClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                entryChipGroup.removeView(chip);
+//            }
+//        });
+        return chip;
+    }
 
    /* public void alarm_nacho_view()
     {

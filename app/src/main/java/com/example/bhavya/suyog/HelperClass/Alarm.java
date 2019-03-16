@@ -1,19 +1,38 @@
 package com.example.bhavya.suyog.HelperClass;
 
+import android.support.design.chip.ChipGroup;
+
+import java.util.ArrayList;
+
 public class Alarm {
     private String suyog_Site_ID;
     private String zone;
     private String location;
     private String zone_Initials;
     private String site_Name;
+    private ArrayList<String> triggered_alarms;
+    private ChipGroup chipgroup;
 
-    public Alarm(String suyog_Site_ID, String zone, String location, String site_Name,String zone_Initials) {
+
+
+    public Alarm(String suyog_Site_ID, String zone, String location, String site_Name, String zone_Initials, ArrayList<String> alarms_triggered) {
         this.suyog_Site_ID = suyog_Site_ID;
         this.zone = zone;
         this.location = location;
         this.site_Name = site_Name;
         this.zone_Initials=zone_Initials;
+      //  this.chipgroup=alarms_group;
+        this.triggered_alarms=alarms_triggered;
     }
+
+    public ArrayList<String> getTriggered_alarms() {
+        return triggered_alarms;
+    }
+
+    public void setTriggered_alarms(ArrayList<String> triggered_alarms) {
+        this.triggered_alarms = triggered_alarms;
+    }
+
     public void setImage_zoneInitials(String zone_initials) {
 
         this.zone_Initials = zone_initials;
@@ -53,5 +72,15 @@ public class Alarm {
 
     public void setSite_Name(String site_Name) {
         this.site_Name = site_Name;
+    }
+
+    public ChipGroup get_alarms_chips()
+    {
+        return chipgroup;
+    }
+
+    public  void set_alarms_chips(ChipGroup cp)
+    {
+        this.chipgroup=cp;
     }
 }
