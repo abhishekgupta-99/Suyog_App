@@ -1,5 +1,8 @@
 package com.example.bhavya.suyog.HelperClass;
 
+import android.content.Context;
+import android.support.design.chip.Chip;
+import android.support.design.chip.ChipGroup;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,11 +25,13 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewH
 
 
     public static class ExampleViewHolder extends RecyclerView.ViewHolder {
+        public Context context;
         public TextView mTextView1;
         public TextView mTextView2;
         public TextView mTextView3;
         public TextView mTextView4;
         public TextView zoneInitials;
+        public ChipGroup chipGroup;
 
         public ExampleViewHolder(View itemView) {
             super(itemView);
@@ -36,6 +41,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewH
             mTextView3 = itemView.findViewById(R.id.textView_site_name);
             mTextView4 = itemView.findViewById(R.id.textView_site_id);
             zoneInitials = itemView.findViewById(R.id.zone_initials);
+            chipGroup=itemView.findViewById(R.id.alarm_chipgroup);
         }
     }
 
@@ -46,19 +52,48 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewH
 
     @Override
     public ExampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Context context=parent.getContext();
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.alarm_list_item, parent, false);
         ExampleViewHolder evh = new ExampleViewHolder(v);
         return evh;
     }
 
+    private Chip getChip(ViewGroup parent,String text) {
+        Context context=parent.getContext();
+        final Chip chip = new Chip(context);
+        //chip.setChipDrawable(ChipDrawable.createFromResource(this, R.xml.my_chip));
+//        int paddingDp = (int) TypedValue.applyDimension(
+//                TypedValue.COMPLEX_UNIT_DIP, 10,
+//                getResources().getDisplayMetrics()
+//        );
+//        chip.setPadding(paddingDp, paddingDp, paddingDp, paddingDp);
+        chip.setText(text);
+        //  entryChipGroup.addView(chip);
+        // chip.setOnCloseIconClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                entryChipGroup.removeView(chip);
+//            }
+//        });
+        return chip;
+    }
+
     @Override
     public void onBindViewHolder(ExampleViewHolder holder, int position) {
+        holder.setIsRecyclable(false);
         Alarm currentItem = mAlarmList.get(position);
         holder.mTextView1.setText(currentItem.getZone());
         holder.mTextView2.setText(currentItem.getLocation());
         holder.mTextView3.setText(currentItem.getSite_Name());
         holder.mTextView4.setText(currentItem.getSuyog_Site_ID());
-      //  holder.zoneInitials.setText(currentItem.getImage_zoneInitials());
+        ArrayList<String> trig_alarm=currentItem.getTriggered_alarms();
+        for (String alarm_chip : trig_alarm)
+        {
+            Chip chip=getChip(holder.chipGroup,alarm_chip);
+            holder.chipGroup.addView(chip);
+           // trig_alarm.clear();
+        }
+
 
     }
 
@@ -131,6 +166,8 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewH
             results.values = filteredList;
             return results;
         }
+
+
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
