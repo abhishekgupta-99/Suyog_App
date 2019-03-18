@@ -165,14 +165,17 @@ public class FilterDialogSheet extends BottomSheetDialogFragment implements View
 
     @Override
     public void onClick(View v) {
-
+        String filter_category;
         ArrayList<String> Zone_filter=new ArrayList<>();
+        ArrayList<String>filter_list_zone=new ArrayList<>();
+        ArrayList<String>filter_list_Alarm=new ArrayList<>();
         for (int i = 0; i < MyCategoriesExpandableListAdapter.parentItems.size(); i++ ){
 
             String isChecked = MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.IS_CHECKED);
+           // Log.i("checked item",isChecked+" is selected");
 
             if (isChecked.equalsIgnoreCase(ConstantManager.CHECK_BOX_CHECKED_TRUE))
-            {   Log.i("check in",MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.CATEGORY_NAME));
+            {   Log.i("checked item","****"+MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.CATEGORY_NAME));
 
             }
 
@@ -182,7 +185,25 @@ public class FilterDialogSheet extends BottomSheetDialogFragment implements View
 
                 if (isChildChecked.equalsIgnoreCase(ConstantManager.CHECK_BOX_CHECKED_TRUE))
                 {
+                     filter_category=MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.CATEGORY_NAME) + " "+(j+1);
                     Zone_filter.add(MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.CATEGORY_NAME) + " "+(j+1));
+                    //filter_list.add(MyCategoriesExpandableListAdapter.parentItems.get(i).get(ConstantManager.Parameter.CATEGORY_NAME) + " "+(j+1));
+                    if(filter_category.equals("Zone 1")||filter_category.equals("Zone 2")||filter_category.equals("Zone 3")||filter_category.equals("Zone 4")){
+                        if(filter_category.equals("Zone 1"))
+                            filter_list_zone.add("North");
+                        if(filter_category.equals("Zone 2"))
+                            filter_list_zone.add("South");
+                        if(filter_category.equals("Zone 3"))
+                            filter_list_zone.add("East");
+                        if(filter_category.equals("Zone 4"))
+                            filter_list_zone.add("West");
+
+                        Log.i("checked Zone","-->"+filter_category);
+                    }
+                    else{
+                        filter_list_Alarm.add(filter_category);
+                        Log.i("checked Alarm","-->"+filter_category);
+                    }
                 }
 
 
@@ -193,10 +214,11 @@ public class FilterDialogSheet extends BottomSheetDialogFragment implements View
         }
 
         for(int i=0;i<Zone_filter.size();i++){
-            Log.i("check in",Zone_filter.get(i));
+         //   Log.i("check in loop",filter_list.get(i));
         }
+       mListener.onButtonClicked(filter_list_zone,filter_list_Alarm);
 
-        if(Zone_filter.size()==1)
+    /*    if(Zone_filter.size()==1)
             mListener.onButtonClicked(Zone_filter.get(0));
         if(Zone_filter.size()==2)
         {
@@ -239,13 +261,13 @@ public class FilterDialogSheet extends BottomSheetDialogFragment implements View
         {
             mListener.onButtonClicked("11");
         }
-
+*/
     }
 
 
 
     public interface BottomSheetListener {
-        void onButtonClicked(String text);
+        void onButtonClicked(ArrayList<String> filter_list_zone,ArrayList<String> filter_list_Alarm);
     }
     @Override
     public void onAttach(Context context) {

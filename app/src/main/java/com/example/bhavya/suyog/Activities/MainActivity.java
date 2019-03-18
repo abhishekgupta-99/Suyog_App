@@ -27,7 +27,9 @@ import com.example.bhavya.suyog.HelperClass.FilterDialogSheet;
 import com.example.bhavya.suyog.R;
 import com.hootsuite.nachos.NachoTextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -83,20 +85,23 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
     public ArrayList<Alarm> dataset() {
         ArrayList<Alarm> alarm_list_data = new ArrayList<>();
         ArrayList<String> alarms_list=new ArrayList<>();
-        alarms_list.add("Short Circuit");
-        alarms_list.add("Power Down");
-        alarm_list_data.add(new Alarm("STL_TP_11", "South", "Trombay", "Trombay-Parcel 1 T-2", "S",alarms_list));
-        alarm_list_data.add(new Alarm("STL_MH_103", "North Central", "Bhiwandi", "Tawre Bldg", "NC",alarms_list));
-        alarm_list_data.add(new Alarm("STL_MH_115", "North West", "Nalasopara", "Ayan Apartment", "NW",alarms_list));
-        alarm_list_data.add(new Alarm("STL_MH_110", "North Central", "Bhiwandi", "Romiya Apartment", "NC",alarms_list));
-        alarm_list_data.add(new Alarm("STL_MH_112", "North Central", "Bhiwandi", "Roshan Baug Bunglow", "NC",alarms_list));
-        alarm_list_data.add(new Alarm("STL_MH_113", "North Central", "Bhiwandi", "Prabhushet Building", "NC",alarms_list));
+        alarms_list.add("Alarms 1");
+        alarms_list.add("Alarms 2");
+        alarms_list.add("Alarms 3");
+        alarms_list.add("Alarms 4");
+        alarms_list.add("Alarms 5");
+
+        alarm_list_data.add(new Alarm("STL_TP_11", "South", "Trombay", "Trombay-Parcel 1 T-2", "S",new ArrayList<String>(Arrays.asList("Alarms 1","Alarms 2"))));
+        alarm_list_data.add(new Alarm("STL_MH_103", "North Central", "Bhiwandi", "Tawre Bldg", "NC",new ArrayList<String>(Arrays.asList("Alarms 1","Alarms 2","Alarms 3"))));
+        alarm_list_data.add(new Alarm("STL_MH_115", "North West", "Nalasopara", "Ayan Apartment", "NW",new ArrayList<String>(Arrays.asList("Alarms 1","Alarms 2","Alarms 4"))));
+        alarm_list_data.add(new Alarm("STL_MH_110", "North Central", "Bhiwandi", "Romiya Apartment", "NC",new ArrayList<String>(Arrays.asList("Alarms 1"))));
+        alarm_list_data.add(new Alarm("STL_MH_112", "North Central", "Bhiwandi", "Roshan Baug Bunglow", "NC",new ArrayList<String>(Arrays.asList("Alarms 1","Alarms 5"))));
+        alarm_list_data.add(new Alarm("STL_MH_113", "North Central", "Bhiwandi", "Prabhushet Building", "NC",new ArrayList<String>(Arrays.asList("Alarms 5"))));
         alarm_list_data.add(new Alarm("STL_MH_119", "East", "Bhiwandi", "Prabhushet Building", "E",alarms_list));
         alarm_list_data.add(new Alarm("STL_MH_179", "South", "Bhiwandi", "Prabhushet Building", "S",alarms_list));
         alarm_list_data.add(new Alarm("STL_MH_69", "West", "Bhiwandi", "Prabhushet Building", "W",alarms_list));
         return alarm_list_data;
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -143,19 +148,138 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
 // manipulated and the adapter is set on alarm_list
 
     @Override
-    public void onButtonClicked(String text) {
+    public void onButtonClicked(ArrayList<String> filter_list_zone,ArrayList<String> filter_list_Alarm) {
         Toast.makeText(this,"Changes Applied.",Toast.LENGTH_SHORT).show();
-        opt=text;
-       switch(opt){
+        alarm_list.clear();
+        for(int i=0;i<filter_list_zone.size();i++){
+            Log.i("check in main",filter_list_zone.get(i));
+        }
+
+        if(filter_list_Alarm.isEmpty()){
+            int x=filter_list_zone.size();
+            if(x==1){
+                for(int i=0;i<alarm_listcopy.size();i++){
+                    if(alarm_listcopy.get(i).getZone().contains(filter_list_zone.get(0))){
+                        alarm_list.add(alarm_listcopy.get(i));
+                        Log.i("Check Added",alarm_listcopy.get(i).getZone());
+                    }
+                }
+            }
+            if(x==2){
+                for(int i=0;i<alarm_listcopy.size();i++){
+                    if(alarm_listcopy.get(i).getZone().contains(filter_list_zone.get(0))||alarm_listcopy.get(i).getZone().contains(filter_list_zone.get(1))){
+                        alarm_list.add(alarm_listcopy.get(i));
+                        Log.i("Check Added",alarm_listcopy.get(i).getZone());
+                    }
+                }
+            }
+            if(x==3){
+                for(int i=0;i<alarm_listcopy.size();i++){
+                    if(alarm_listcopy.get(i).getZone().contains(filter_list_zone.get(0))||alarm_listcopy.get(i).getZone().contains(filter_list_zone.get(1))||alarm_listcopy.get(i).getZone().contains(filter_list_zone.get(2))){
+                        alarm_list.add(alarm_listcopy.get(i));
+                        Log.i("Check Added",alarm_listcopy.get(i).getZone());
+                    }
+                }
+            }
+            if(x==4){
+                for(int i=0;i<alarm_listcopy.size();i++){
+                    if(alarm_listcopy.get(i).getZone().contains(filter_list_zone.get(0))||alarm_listcopy.get(i).getZone().contains(filter_list_zone.get(1))||alarm_listcopy.get(i).getZone().contains(filter_list_zone.get(2))||alarm_listcopy.get(i).getZone().contains(filter_list_zone.get(3))){
+                        alarm_list.add(alarm_listcopy.get(i));
+                        Log.i("Check Added",alarm_listcopy.get(i).getZone());
+                    }
+                }
+            }
+        }
+
+
+
+        
+        if(filter_list_zone.isEmpty()){
+            alarm_list.clear();
+            int x=filter_list_Alarm.size();
+            if(x==1){
+                for(int i=0;i<alarm_listcopy.size();i++){
+                    if(alarm_listcopy.get(i).getTriggered_alarms().size()==1){
+                        if(alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(0))){
+                            alarm_list.add(alarm_listcopy.get(i));
+                            Log.i("Check Added",alarm_listcopy.get(i).getZone());
+                        }
+                    }
+
+                }
+            }
+            if(x==2){
+                for(int i=0;i<alarm_listcopy.size();i++){
+                    if(alarm_listcopy.get(i).getTriggered_alarms().size()==2){
+                        if(alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(0))&& alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(1))){
+                            alarm_list.add(alarm_listcopy.get(i));
+                            Log.i("Check Added",alarm_listcopy.get(i).getZone());
+                        }
+                    }
+                }
+            }
+            if(x==3){
+                for(int i=0;i<alarm_listcopy.size();i++){
+                    if(alarm_listcopy.get(i).getTriggered_alarms().size()==3){
+                        if(alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(0))&&alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(1))&&alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(2))){
+                            alarm_list.add(alarm_listcopy.get(i));
+                            Log.i("Check Added",alarm_listcopy.get(i).getZone());
+                        }
+                    }
+                }
+            }
+            if(x==4){
+                for(int i=0;i<alarm_listcopy.size();i++){
+                    if(alarm_listcopy.get(i).getTriggered_alarms().size()==4){
+                        if(alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(1))&&alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(1))&&alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(2))&&alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(3))){
+                            alarm_list.add(alarm_listcopy.get(i));
+                            Log.i("Check Added",alarm_listcopy.get(i).getZone());
+                        }
+                    }
+
+                }
+            }
+        }
+
+        if(filter_list_Alarm.size()!=0&&filter_list_zone.size()!=0)
+        {   alarm_list.clear();
+            int x=filter_list_zone.size();
+            int y=filter_list_Alarm.size();
+
+            for(int i=0;i<alarm_listcopy.size();i++){
+                for(int j=0;j<x;j++){
+                 if(alarm_listcopy.get(i).getZone().contains(filter_list_zone.get(j)))
+                 {
+                    if(y==1){
+                        if(alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(0)))
+                            alarm_list.add(alarm_listcopy.get(i));
+                    }
+                    else if(y==2){
+                        if(alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(0))&& alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(1)))
+                            alarm_list.add(alarm_listcopy.get(i));
+                    }
+                    else if(y==3){
+                        if(alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(0))&&alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(1))&&alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(2)))
+                            alarm_list.add(alarm_listcopy.get(i));
+                    }
+                    else if(y==4){
+                        if(alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(1))&&alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(1))&&alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(2))&&alarm_listcopy.get(i).getTriggered_alarms().contains(filter_list_Alarm.get(3)))
+                            alarm_list.add(alarm_listcopy.get(i));
+                    }
+                    else
+                        continue;
+
+                 }
+                }
+            }
+        }
+
+        //opt=text;
+     /*  switch(opt){
            case "Zone 1":
                alarm_list.clear();
                Log.i("check Inside",opt);
-               for(int i=0;i<alarm_listcopy.size();i++){
-                   if(alarm_listcopy.get(i).getZone().contains("North")){
-                       alarm_list.add(alarm_listcopy.get(i));
 
-                   }
-               }
 
                break;
            case "Zone 2":
@@ -237,6 +361,7 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
                        Log.i("Check Added",alarm_listcopy.get(i).getZone());
                    }
                }
+
                break;
            case "6":
                Log.i("Inside",opt);
@@ -292,7 +417,7 @@ public class MainActivity extends AppCompatActivity implements FilterDialogSheet
                alarm_list.clear();
                alarm_list.addAll(alarm_listcopy);
                break;
-       }
+       }*/
         mAdapter.notifyDataSetChanged();
 
     }
