@@ -33,15 +33,6 @@ public class Alarm {
         this.triggered_alarms = triggered_alarms;
     }
 
-    public void setImage_zoneInitials(String zone_initials) {
-
-        this.zone_Initials = zone_initials;
-    }
-    public  String getImage_zoneInitials() {
-
-       return zone_Initials;
-    }
-
     public String getSuyog_Site_ID() {
         return suyog_Site_ID;
     }
@@ -74,13 +65,4 @@ public class Alarm {
         this.site_Name = site_Name;
     }
 
-    public ChipGroup get_alarms_chips()
-    {
-        return chipgroup;
-    }
-
-    public  void set_alarms_chips(ChipGroup cp)
-    {
-        this.chipgroup=cp;
-    }
 }

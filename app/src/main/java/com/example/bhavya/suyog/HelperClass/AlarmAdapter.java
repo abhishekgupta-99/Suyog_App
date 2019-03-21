@@ -30,7 +30,6 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewH
         public TextView mTextView2;
         public TextView mTextView3;
         public TextView mTextView4;
-        public TextView zoneInitials;
         public ChipGroup chipGroup;
 
         public ExampleViewHolder(View itemView) {
@@ -40,7 +39,6 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewH
             mTextView2 = itemView.findViewById(R.id.textView_location);
             mTextView3 = itemView.findViewById(R.id.textView_site_name);
             mTextView4 = itemView.findViewById(R.id.textView_site_id);
-            zoneInitials = itemView.findViewById(R.id.zone_initials);
             chipGroup=itemView.findViewById(R.id.alarm_chipgroup);
         }
     }
@@ -91,7 +89,6 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.ExampleViewH
         {
             Chip chip=getChip(holder.chipGroup,alarm_chip);
             holder.chipGroup.addView(chip);
-           // trig_alarm.clear();
         }
 
 
